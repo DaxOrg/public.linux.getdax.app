@@ -2,74 +2,80 @@
 
 **The human harness for working with AI agents.**
 
-The first Linux beta brings Shepherd's agent workspace and a focused set of
-accelerators to Linux. Local features work without a Dax account.
+The Linux desktop now uses the macOS Dax visual design: the project sidebar,
+tab strip, agent panes, floating accelerator grid, snippet previews, and Ask panel.
+Settings uses its own window with the macOS icon toolbar. Dark and light
+appearance share Dax's own accent and agent artwork.
 
-![Dax Shepherd running two Linux terminal panes](images/shepherd-beta.png)
+![Shepherd running on Linux](images/shepherd-electron.png)
 
-## Download 0.1.0-beta.1
+![The Linux accelerator launcher](images/launcher-electron.png)
 
-[Download the first beta](https://github.com/DaxOrg/public.linux.getdax.app/releases/tag/v0.1.0-beta.1)
+![The separate preferences window](images/settings-electron.png)
 
-**x86_64 / amd64 only** for this release. Debian 12+ and Ubuntu 24.04+ are the
-initial package targets. Download `dax_0.1.0-beta.1_amd64.deb`, then:
+## Download 0.2.0-beta.1
+
+[Download the visual-design update](https://github.com/DaxOrg/public.linux.getdax.app/releases/tag/v0.2.0-beta.1)
+
+**x86_64 / amd64**. Debian 12+ and Ubuntu 24.04+ are the initial package targets.
+Download `dax_0.2.0-beta.1_amd64.deb`, then:
 
 ```sh
-sudo apt install ./dax_0.1.0-beta.1_amd64.deb
+sudo apt install ./dax_0.2.0-beta.1_amd64.deb
 ```
 
-Open **Dax** from your application launcher, or run `dax` in a terminal.
-A portable tar archive is also available; see [INSTALL.md](INSTALL.md).
+A tar archive with a user-local installer is also available. See
+[INSTALL.md](INSTALL.md). Existing beta-one libraries and keyring credentials
+are preserved when upgrading.
 
 ## Try it
 
-1. In **Shepherd**, choose a project folder.
-2. Start a shell or select an installed coding agent: Claude Code, Codex, or Gemini CLI.
-3. Open more sessions or split the current session into two panes.
-4. Press **Ctrl+K** to explore Prompt Snippets, Frequent CLIs, Inject MD, Secrets,
-   Ask AI / Image Ask, Image to URL, and File Drop.
-5. Use **Settings** to optionally connect a Dax invite code or your OpenRouter key.
+1. Open Dax and choose a project folder.
+2. Add a shell, Claude Code, Codex, or Gemini CLI. Agents need to be installed and
+   signed in separately.
+3. Add tabs or split panes. Use the pane's expand button to focus on one agent.
+4. Open **Accelerators** from the sidebar's lightning button or **Ctrl+Alt+Space**.
+5. Explore Prompt Snippets, Frequent CLIs, Inject MD, Secrets, Ask AI / Image Ask,
+   Image to URL, and File Drop.
 
-Coding agents must be installed and authenticated separately. SSH uses your normal
-OpenSSH configuration; enter a host alias or `user@host`. Ports and keys can be
-configured in `~/.ssh/config`.
+**Ctrl+Shift+K** finds a project. **Ctrl+Shift+J** jumps to an agent. **Ctrl+Shift+N** adds an
+agent, **Ctrl+Shift+T** creates a tab, **Ctrl+Shift+B** folds the sidebar, and
+**Ctrl+Shift+C/V** copies/pastes terminal text. Escape closes a palette or returns
+to its launcher. A global launcher shortcut can be enabled in Settings.
 
-Closing the window hides Dax and keeps sessions running. **Quit Dax** asks before
-ending sessions. Terminal copy/paste uses **Ctrl+Shift+C/V**. Local prompts and
-recent projects are remembered; terminal processes are not restored after quitting.
+Local features need no Dax account. AI requires a Dax invite code or your
+OpenRouter key. File uploads require Dax and are limited to 64 MB in this beta.
+SSH uses your normal OpenSSH configuration and keys.
 
-## Early beta limitations
+## Visual design and current limits
 
-- No full macOS feature parity yet: screen markup, background removal, image
-  generation, multiplayer, and custom cloud storage are not included.
-- X11 and a private Secret Service are covered by automated desktop tests.
-  Interactive GNOME/KDE/Wayland testing is still needed. Screenshot and global
-  shortcut portals depend on your desktop. Bind `dax --launcher` in your desktop's
-  keyboard settings if automatic registration is unavailable.
-- The global shortcut is enabled per running session from Settings. Its X11
-  default is Ctrl+Alt+Space. A tray extension may be needed on GNOME; the application
-  launcher works without one.
-- AI requires a Dax account with credits or an OpenRouter key. Uploads require a
-  Dax account and are limited to 64 MB. Live account-backed AI/upload smoke tests
-  are not included in the automated test suite.
-- No automatic updates yet. Download and install a newer package manually.
-- ARM64 packages are not available in this first release.
+The launcher, snippet panel, Ask panel, surfaces, typography sizes, and pane chrome
+follow the macOS source measurements. The Linux interface uses bundled Inter;
+font rasterization, native file dialogs, and desktop-compositor blur can vary.
+This is not full macOS feature parity: multiplayer, image generation, background
+removal, screen markup, remote snippet-library synchronization, custom cloud
+storage, and terminal-process restoration are not yet included.
+
+Prompt Snippets includes Dax's bundled Preloader Snippet. **Type** pastes into an
+open Shepherd terminal; **Copy** works with any application. Commands and agents
+are never automatically relaunched after quitting.
+
+Wayland portal availability depends on the desktop. Interactive GNOME/KDE/Wayland
+coverage and live account-backed AI/upload tests remain areas for broader beta
+testing. No ARM64 package or automatic updater yet.
 
 ## Privacy
 
-Libraries and recent project paths stay on your computer. Credentials are stored
-in GNOME Keyring or KDE Wallet, never in a plaintext Dax file. Dax does not poll
-your clipboard or send automatic analytics.
+Libraries and project paths stay on this computer. Credentials use GNOME Keyring
+or KDE Wallet. No clipboard polling or automatic analytics. Ask sends the
+conversation and selected image only when you press Send. Uploads send only the
+file you explicitly choose to upload. **Anyone with the returned link can access
+that uploaded file.** Coding agents manage their own connections and permissions.
 
-Ask sends your conversation and chosen image only when you press Ask. Uploads send
-your chosen file to Dax only when you press Upload. **Uploaded links are public to
-anyone who has the link.** Coding agents manage their own connections and permissions.
-
-[Read the validation record](VALIDATION.md).
+[Validation record](VALIDATION.md)
 
 ## Feedback
 
-[Report a problem](https://github.com/DaxOrg/public.linux.getdax.app/issues/new).
-Include your distribution, desktop (GNOME/KDE/etc.), X11 or Wayland, Dax version,
-and steps to reproduce. Remove prompts, tokens, and other private information from
-logs before sharing them.
+[Report an issue](https://github.com/DaxOrg/public.linux.getdax.app/issues/new).
+Include your distribution, desktop, X11/Wayland, Dax version, and reproduction
+steps. Remove private prompts and credentials from any logs you share.

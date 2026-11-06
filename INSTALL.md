@@ -1,79 +1,84 @@
-# Installing Dax for Linux
+# Install Dax for Linux
 
-Download assets from the [0.1.0-beta.1 release](https://github.com/DaxOrg/public.linux.getdax.app/releases/tag/v0.1.0-beta.1).
-This release is for **x86_64 (amd64)** computers.
+Download [0.2.0-beta.1](https://github.com/DaxOrg/public.linux.getdax.app/releases/tag/v0.2.0-beta.1).
+This release supports **x86_64 / amd64** computers.
 
-## Verify your download
+## Verify the download
 
-Download `SHA256SUMS` alongside the package and run:
+Download `SHA256SUMS` alongside your package:
 
 ```sh
 sha256sum --ignore-missing -c SHA256SUMS
 ```
 
-Checksums detect damaged downloads; they are not a separate cryptographic signature.
-
 ## Debian 12 / Ubuntu 24.04 or later
 
 ```sh
-sudo apt install ./dax_0.1.0-beta.1_amd64.deb
+sudo apt install ./dax_0.2.0-beta.1_amd64.deb
 ```
 
-APT installs the declared GTK, VTE, and other native library dependencies. A normal
-logged-in desktop session with D-Bus is required. For Secrets and saved AI keys,
-use GNOME Keyring or a Secret Service-compatible KDE Wallet. For screenshots and
-Wayland shortcuts, install your desktop's XDG portal backend.
+Open **Dax** from the application menu, or run `dax`. APT installs the declared
+native dependencies. The system package installs Chromium's official sandbox
+helper with the permissions it requires. The application does not add a
+`--no-sandbox` flag.
 
-## Portable archive
+Upgrading replaces the application while retaining libraries in
+`~/.local/share/dax` and credentials in the desktop keyring. Quit the previous
+version before installing the update.
 
-Install GTK4 (4.8+), libadwaita (1.2+), VTE GTK4 (0.70+), OpenSSL 3, D-Bus, and
-OpenSSH, and Python 3 on your distribution. Then extract the archive and install it for your user:
+## User-local tar installation
+
+Install your distribution's GTK3, NSS, ALSA, GBM, OpenSSL 3, D-Bus, DejaVu fonts,
+OpenSSH, and Python 3 packages. Then:
 
 ```sh
-tar -xzf dax-0.1.0-beta.1-linux-x86_64.tar.gz
-cd dax-0.1.0-beta.1-linux-x86_64
+tar -xzf dax-0.2.0-beta.1-linux-x86_64.tar.gz
+cd dax-0.2.0-beta.1-linux-x86_64
 ./install.sh
 ```
 
-The installer writes the executable to `~/.local/bin/dax` and the desktop entry and
-icon to `~/.local/share`. It does not need sudo. If `~/.local/bin` is not on your
-PATH, launch Dax from the application menu or run `~/.local/bin/dax`.
+The installer writes the application to `~/.local/lib/dax`, a launcher to
+`~/.local/bin/dax`, and the desktop entry/icon to `~/.local/share`.
+It uses Chromium's user-namespace sandbox. Desktops that restrict unprivileged
+user namespaces should use the `.deb` installation instead. Do not disable the
+application sandbox to work around an installation problem.
 
-Do not mix a system `.deb` installation and a user-local installation; choose one
-method. To upgrade, quit Dax and install the new package using the same method.
+Choose one installation method; avoid leaving a system and user-local version
+on PATH at the same time.
 
-## Shortcuts and tray
+## First use
 
-Inside Dax, Ctrl+K opens Accelerators; Ctrl+Shift+C/V copies and pastes in terminals.
-Enable the global launcher shortcut in Settings for each running session. On X11,
-it is Ctrl+Alt+Space. On Wayland, the desktop may ask you to approve a shortcut.
-If the portal is unavailable, add a desktop custom shortcut for `dax --launcher`.
+- Choose a folder in Shepherd, then add a shell or an already-installed agent.
+- Ctrl+Alt+Space opens Accelerators inside Dax. Settings can enable it globally.
+- Ctrl+Shift+K opens the project picker; Ctrl+Shift+J jumps to an agent.
+- Ctrl+Shift+N adds an agent, Ctrl+Shift+T creates a tab, Ctrl+Shift+B folds the
+  sidebar, and Ctrl+Shift+M zooms the selected pane.
+- Closing the window hides Dax and preserves running sessions. Quit Dax from its
+  tray menu or Settings → About to end them, with confirmation.
+- For credentials, start/unlock GNOME Keyring or a Secret Service-compatible
+  KDE Wallet. Dax never falls back to storing secrets in a JSON file.
+- For screenshots and Wayland shortcuts, install your desktop's XDG portal
+  backend. If global shortcuts are unavailable, bind `dax --launcher` through
+  the desktop's keyboard settings.
 
-GNOME may require an AppIndicator extension for the tray icon. You can always
-reopen Dax through the application menu. Closing its window hides it; **Quit Dax**
-ends the application after confirming that running sessions may be disconnected.
+`dax --settings`, `dax --launcher`, `dax --background`, `dax --quit`, and
+`dax --version` are available through the installed launcher.
 
-## Remove Dax
+## Remove
 
-For the `.deb`:
+For the system package:
 
 ```sh
 sudo apt remove dax
 ```
 
-For the tar installation, use the included `./uninstall.sh`. Libraries and desktop
-keyring entries are retained. Disconnect AI accounts and delete any vault entries
-from Dax before uninstalling if you want them removed too.
+For the user-local installation, run the archive's `./uninstall.sh`.
+Libraries and keyring records are retained. Disconnect accounts and delete vault
+entries inside Dax before uninstalling if you want those removed too.
 
 ## Troubleshooting
 
-- **Missing agent:** install the agent in your Linux environment and ensure it is on
-  PATH. Dax does not install agents or bypass their permission prompts.
-- **Keyring unavailable:** start/unlock your desktop's Secret Service. Dax will show
-  an error instead of storing a credential in a file.
-- **Screenshot unavailable:** install your desktop portal backend or attach an image
-  file in Ask instead.
-- **No window after closing:** run `dax` again. `dax --settings` opens Settings and
-  `dax --launcher` opens Accelerators in the existing instance.
-- **Updates:** check the public repository's Releases page; this beta has no automatic
-  updater.
+Check that agents are on PATH and authenticated in your Linux environment.
+For a missing screenshot portal, attach an image file instead. GNOME may need an
+AppIndicator extension to display the tray, but Dax remains accessible through
+its application launcher. Updates are installed manually from GitHub Releases.

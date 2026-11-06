@@ -1,47 +1,35 @@
-# Dax for Linux 0.1.0-beta.1
+# Dax for Linux 0.2.0-beta.1
 
-The first public Linux beta is ready to try on x86_64 desktops.
+This update replaces the first beta's GTK presentation with the macOS Dax visual
+design, rendered in HTML/CSS through Electron with the existing Rust services.
 
-## Included
+- Project sidebar, collapsible navigation, tab lane, colored pane headers, and
+  16-pixel terminal text.
+- The 528-pixel, three-column launcher with macOS tile measurements, icon wells,
+  selection glow, keyboard navigation, arrangement, pinning, and sorting.
+- The 856×600 Prompt Snippets panel with a 336-pixel list, preview stage,
+  My Snippets / Snippet Library tabs, and copy/type modes.
+- The 580×600 shared Ask / Image Ask panel, compact composer, Markdown answers,
+  image previews, and pending answers preserved across panel close/reopen.
+- A separate macOS-style Settings window with an icon toolbar, plus dark/light
+  appearance, Dax accent choices, and the original app/agent artwork.
+- Real PTYs and the existing libraries, keyring credentials, AI and upload clients.
 
-- Shepherd with embedded agent terminals, tabs, two-pane sessions, recent projects,
-  and SSH using your existing OpenSSH setup.
-- Prompt Snippets, Frequent CLIs, Inject MD, and desktop-keyring-backed Secrets.
-- Ask AI / Image Ask with conversation history, image attachments, and optional
-  portal screenshots. Connect a Dax invite code or your OpenRouter key in Settings.
-- Image to URL and File Drop with explicit upload and public-link copy.
-- Searchable launcher, tray, desktop entry, single-instance activation, and
-  optional global launcher shortcut.
-
-## Install
-
-Download `dax_0.1.0-beta.1_amd64.deb` and `SHA256SUMS`:
+Download `dax_0.2.0-beta.1_amd64.deb` or
+`dax-0.2.0-beta.1-linux-x86_64.tar.gz` with `SHA256SUMS`.
 
 ```sh
 sha256sum --ignore-missing -c SHA256SUMS
-sudo apt install ./dax_0.1.0-beta.1_amd64.deb
+sudo apt install ./dax_0.2.0-beta.1_amd64.deb
 ```
 
-Or download `dax-0.1.0-beta.1-linux-x86_64.tar.gz` and follow the included
-`INSTALL.md`. Debian 12 and Ubuntu 24.04 are the initial package targets.
+The system package is recommended for Debian 12 / Ubuntu 24.04. Existing Linux
+libraries and desktop-keyring credentials are retained.
 
-Open Dax, choose a project, and start a shell or an agent you already have installed.
-No account is needed for local features. AI requires valid credentials and credits;
-file uploads require a Dax account and create public links.
+The application uses the same design measurements; native dialogs, compositor
+blur, and font rasterization remain platform-dependent. Full macOS feature parity,
+ARM64 packages, automatic updates, and broad Wayland/live-service validation are
+still future work. No fake controls are shown for unported features.
 
-## Validation and limits
-
-The Linux build is exercised with automated local-storage, HTTP, command-validation,
-X11 shortcut, desktop-keyring, and GTK/VTE workflow tests. These verify prompt
-save/search/copy, terminal command execution, split sessions, and hide/reopen behavior.
-
-This is an early beta, not full macOS parity. Interactive GNOME/KDE/Wayland coverage
-is still needed. Portal screenshots and shortcuts depend on your desktop backend;
-`dax --launcher` can be assigned as a custom desktop shortcut. Live account-backed
-AI and uploads are not exercised by the automated tests.
-
-No ARM64 binary, automatic updater, restored terminal processes, multiplayer,
-custom cloud storage, image generation, background removal, or screen markup yet.
-
-[Installation and troubleshooting](https://github.com/DaxOrg/public.linux.getdax.app/blob/main/INSTALL.md)
-· [Report an issue](https://github.com/DaxOrg/public.linux.getdax.app/issues/new)
+[Installation](https://github.com/DaxOrg/public.linux.getdax.app/blob/main/INSTALL.md)
+· [Feedback](https://github.com/DaxOrg/public.linux.getdax.app/issues/new)
