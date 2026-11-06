@@ -5,6 +5,8 @@
 The first Linux beta brings Shepherd's agent workspace and a focused set of
 accelerators to Linux. Local features work without a Dax account.
 
+![Dax Shepherd running two Linux terminal panes](images/shepherd-beta.png)
+
 ## Download 0.1.0-beta.1
 
 [Download the first beta](https://github.com/DaxOrg/public.linux.getdax.app/releases/tag/v0.1.0-beta.1)
