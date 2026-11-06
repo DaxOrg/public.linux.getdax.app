@@ -16,7 +16,7 @@ Checksums detect damaged downloads; they are not a separate cryptographic signat
 ## Debian 12 / Ubuntu 24.04 or later
 
 ```sh
-sudo apt install ./dax_0.1.0~beta.1_amd64.deb
+sudo apt install ./dax_0.1.0-beta.1_amd64.deb
 ```
 
 APT installs the declared GTK, VTE, and other native library dependencies. A normal

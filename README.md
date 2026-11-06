@@ -12,10 +12,10 @@ accelerators to Linux. Local features work without a Dax account.
 [Download the first beta](https://github.com/DaxOrg/public.linux.getdax.app/releases/tag/v0.1.0-beta.1)
 
 **x86_64 / amd64 only** for this release. Debian 12+ and Ubuntu 24.04+ are the
-initial package targets. Download `dax_0.1.0~beta.1_amd64.deb`, then:
+initial package targets. Download `dax_0.1.0-beta.1_amd64.deb`, then:
 
 ```sh
-sudo apt install ./dax_0.1.0~beta.1_amd64.deb
+sudo apt install ./dax_0.1.0-beta.1_amd64.deb
 ```
 
 Open **Dax** from your application launcher, or run `dax` in a terminal.

@@ -15,11 +15,11 @@ The first public Linux beta is ready to try on x86_64 desktops.
 
 ## Install
 
-Download `dax_0.1.0~beta.1_amd64.deb` and `SHA256SUMS`:
+Download `dax_0.1.0-beta.1_amd64.deb` and `SHA256SUMS`:
 
 ```sh
 sha256sum --ignore-missing -c SHA256SUMS
-sudo apt install ./dax_0.1.0~beta.1_amd64.deb
+sudo apt install ./dax_0.1.0-beta.1_amd64.deb
 ```
 
 Or download `dax-0.1.0-beta.1-linux-x86_64.tar.gz` and follow the included
