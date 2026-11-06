@@ -65,6 +65,8 @@ Ask sends your conversation and chosen image only when you press Ask. Uploads se
 your chosen file to Dax only when you press Upload. **Uploaded links are public to
 anyone who has the link.** Coding agents manage their own connections and permissions.
 
+[Read the validation record](VALIDATION.md).
+
 ## Feedback
 
 [Report a problem](https://github.com/DaxOrg/public.linux.getdax.app/issues/new).
